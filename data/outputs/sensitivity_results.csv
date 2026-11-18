@@ -1,0 +1,9 @@
+parameter_tested,top_10_overlap_count,top_10_overlap_stability_pct,conclusion,note
+Batting Consistency Weight = 0.10,5,50.0,High Sensitivity,Computed from actual ranking comparison
+Batting Consistency Weight = 0.20,6,60.0,Moderate Sensitivity,Computed from actual ranking comparison
+Batting Consistency Weight = 0.35,7,70.0,Moderate Sensitivity,Computed from actual ranking comparison
+Batting Consistency Weight = 0.50,8,80.0,Highly Stable,Computed from actual ranking comparison
+Empirical Bayes Prior M = 15 balls,5,50.0,Moderate Sensitivity,Computed from actual ranking comparison
+Empirical Bayes Prior M = 30 balls,5,50.0,Moderate Sensitivity,Computed from actual ranking comparison
+Empirical Bayes Prior M = 50 balls,5,50.0,Moderate Sensitivity,Computed from actual ranking comparison
+Empirical Bayes Prior M = 75 balls,6,60.0,Moderate Sensitivity,Computed from actual ranking comparison

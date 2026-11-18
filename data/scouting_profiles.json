@@ -1,0 +1,462 @@
+{
+  "Reeza Hendricks": {
+    "role": "Top-Order Batter / Accelerator (RHB)",
+    "nationality": "Overseas (South Africa)",
+    "player_type": "Batter",
+    "rank": 1,
+    "fit_score": 100.0,
+    "hp_sr": 184.43,
+    "shrunk_lift": "+35.69 SR Lift",
+    "hp_balls": 167,
+    "hp_boundary_pct": 22.8,
+    "hp_dot_pct": 28.1,
+    "strengths": [
+      "World-class boundary acceleration under high leverage (184.43 HP SR).",
+      "Huge strike rate lift (+35.69) over expected phase baseline.",
+      "Can open or bat at #3/#4 to provide instant impetus."
+    ],
+    "limitations": [
+      "Consumes 1 of RR's 3 remaining overseas slots.",
+      "Higher dot-ball rate on gripping spin surfaces."
+    ],
+    "rr_tactical_fit": "Solves RR's need for an elite overseas batting enforcer to partner Samson and Parag.",
+    "budget_ceiling": "\u20b97.00 Cr"
+  },
+  "Daryl Mitchell": {
+    "role": "Middle-Order Spin Destroyer / All-Rounder (RHB)",
+    "nationality": "Overseas (New Zealand)",
+    "player_type": "Batter",
+    "rank": 2,
+    "fit_score": 79.25,
+    "hp_sr": 155.02,
+    "shrunk_lift": "+16.06 SR Lift",
+    "hp_balls": 229,
+    "hp_boundary_pct": 19.2,
+    "hp_dot_pct": 31.4,
+    "strengths": [
+      "One of the world's finest middle-overs counters to wrist and finger spin.",
+      "Proven performer under high-pressure knockout environments.",
+      "Contributes medium-pace seam bowling utility."
+    ],
+    "limitations": [
+      "Overseas slot requirement.",
+      "Requires 5-8 balls to settle before hitting maximum gear."
+    ],
+    "rr_tactical_fit": "Directly resolves RR's Innings 1 Middle Overs deficit (+0.41 rpo) by demolishing middle-overs spin.",
+    "budget_ceiling": "\u20b96.50 Cr"
+  },
+  "Towhid Hridoy": {
+    "role": "Middle-Order Stroke Player / Accelerator (RHB)",
+    "nationality": "Overseas (Bangladesh)",
+    "player_type": "Batter",
+    "rank": 3,
+    "fit_score": 77.31,
+    "hp_sr": 142.67,
+    "shrunk_lift": "+17.04 SR Lift",
+    "hp_balls": 232,
+    "hp_boundary_pct": 18.5,
+    "hp_dot_pct": 33.2,
+    "strengths": [
+      "High tactical versatility against both pace and spin.",
+      "Substantial +17.04 shrunk strike rate lift under extreme pressure.",
+      "Superb running between wickets reducing dot ball pressure."
+    ],
+    "limitations": [
+      "Unproven on extreme bouncy tracks.",
+      "Moderate boundary hitting in death overs."
+    ],
+    "rr_tactical_fit": "Provides flexible middle-order anchor-to-acceleration transitioning at #4/#5.",
+    "budget_ceiling": "\u20b94.50 Cr"
+  },
+  "Mark Chapman": {
+    "role": "Middle-Overs Finisher / 360-Degree Batter (LHB)",
+    "nationality": "Overseas (New Zealand)",
+    "player_type": "Batter",
+    "rank": 4,
+    "fit_score": 75.69,
+    "hp_sr": 154.58,
+    "shrunk_lift": "+12.37 SR Lift",
+    "hp_balls": 240,
+    "hp_boundary_pct": 20.4,
+    "hp_dot_pct": 30.8,
+    "strengths": [
+      "Left-handed middle-overs enforcer with innovative sweep and ramp options.",
+      "Superb 154.58 high-pressure strike rate across 240 balls.",
+      "Disrupts bowler lengths through 360-degree wagon wheel."
+    ],
+    "limitations": [
+      "Occasional vulnerability against extreme high pace bouncers.",
+      "Overseas slot commitment."
+    ],
+    "rr_tactical_fit": "Offers an explosive left-handed middle-order weapon alongside Hetmyer and Parag.",
+    "budget_ceiling": "\u20b95.00 Cr"
+  },
+  "Shimron Hetmyer": {
+    "role": "Proven Death-Overs Power Finisher (LHB)",
+    "nationality": "Overseas (West Indies)",
+    "player_type": "Batter",
+    "rank": 5,
+    "fit_score": 75.68,
+    "hp_sr": 159.18,
+    "shrunk_lift": "+14.54 SR Lift",
+    "hp_balls": 414,
+    "hp_boundary_pct": 21.5,
+    "hp_dot_pct": 32.6,
+    "strengths": [
+      "Massive sample size: 414 high-pressure deliveries faced with 159.18 SR.",
+      "Known entity with deep familiarity with RR team culture.",
+      "Fearless hitting against both death-pace yorkers and wide lines."
+    ],
+    "limitations": [
+      "Susceptible to disciplined wide-outside-off yorker traps.",
+      "Overseas quota consumption."
+    ],
+    "rr_tactical_fit": "Turnkey marquee death-overs finisher if acquired within reasonable auction envelope.",
+    "budget_ceiling": "\u20b96.00 Cr"
+  },
+  "Vijay Shankar": {
+    "role": "Experienced Middle-Order Anchor / Seam Option (RHB)",
+    "nationality": "Indian",
+    "player_type": "Batter",
+    "rank": 6,
+    "fit_score": 65.94,
+    "hp_sr": 145.0,
+    "shrunk_lift": "+10.41 SR Lift",
+    "hp_balls": 140,
+    "hp_boundary_pct": 17.1,
+    "hp_dot_pct": 34.3,
+    "strengths": [
+      "Domestic capped Indian asset freeing up overseas player combinations.",
+      "Reliable 145.00 high-pressure strike rate across 140 balls.",
+      "Capable medium pace bowling utility."
+    ],
+    "limitations": [
+      "Lower ceiling against express 145+ km/h pace bowling.",
+      "Injury management history."
+    ],
+    "rr_tactical_fit": "Provides vital Indian batting balance at #5, allowing RR to play two overseas pacers.",
+    "budget_ceiling": "\u20b93.50 Cr"
+  },
+  "Ajinkya Rahane": {
+    "role": "Experienced Top/Middle Indian Anchor (RHB)",
+    "nationality": "Indian",
+    "player_type": "Batter",
+    "rank": 7,
+    "fit_score": 63.41,
+    "hp_sr": 151.69,
+    "shrunk_lift": "+20.03 SR Lift",
+    "hp_balls": 118,
+    "hp_boundary_pct": 19.5,
+    "hp_dot_pct": 31.4,
+    "strengths": [
+      "Exceptional high-pressure strike rate (151.69) with +20.03 shrunk lift.",
+      "Decade-long IPL captaincy and tactical leadership experience.",
+      "Master against pace bowling inside the field-restriction overs."
+    ],
+    "limitations": [
+      "Can slow down if bogged down by left-arm orthodox spin.",
+      "Age profile (36+)."
+    ],
+    "rr_tactical_fit": "Provides elite Indian composure and top-order rotation behind Jaiswal and Samson.",
+    "budget_ceiling": "\u20b93.00 Cr"
+  },
+  "Rassie van der Dussen": {
+    "role": "High-Pressure Chase Specialist / Anchor (RHB)",
+    "nationality": "Overseas (South Africa)",
+    "player_type": "Batter",
+    "rank": 8,
+    "fit_score": 60.51,
+    "hp_sr": 144.26,
+    "shrunk_lift": "+30.80 SR Lift",
+    "hp_balls": 122,
+    "hp_boundary_pct": 18.0,
+    "hp_dot_pct": 33.6,
+    "strengths": [
+      "Huge shrunk lift (+30.80) in extreme clutch run chases.",
+      "Immaculate game-awareness and situational calculation.",
+      "Solid defensive technique against spinning surfaces."
+    ],
+    "limitations": [
+      "Requires a few balls to calibrate timing.",
+      "Consumes an overseas player spot."
+    ],
+    "rr_tactical_fit": "Calculated chase master who ensures RR never collapses during tricky 170+ targets.",
+    "budget_ceiling": "\u20b94.00 Cr"
+  },
+  "Asif Khan": {
+    "role": "High-Strike Middle-Order Power Hitter (RHB)",
+    "nationality": "Overseas (Associate / UAE)",
+    "player_type": "Batter",
+    "rank": 9,
+    "fit_score": 60.14,
+    "hp_sr": 171.17,
+    "shrunk_lift": "+15.34 SR Lift",
+    "hp_balls": 111,
+    "hp_boundary_pct": 23.4,
+    "hp_dot_pct": 36.9,
+    "strengths": [
+      "Electrifying 171.17 strike rate under high-pressure scenarios.",
+      "Tremendous power-clearing capability over deep midwicket and long-on.",
+      "Extremely low expected price point allowing budget optimization."
+    ],
+    "limitations": [
+      "Higher dot-ball percentage (36.9%).",
+      "Limited exposure to elite Tier-1 IPL international attacks."
+    ],
+    "rr_tactical_fit": "High-upside tactical budget power hitter who can be secured at base price.",
+    "budget_ceiling": "\u20b91.50 Cr"
+  },
+  "M Shahrukh Khan": {
+    "role": "Premier Uncapped Indian Power Finisher (RHB)",
+    "nationality": "Indian (Uncapped)",
+    "player_type": "Batter",
+    "rank": 10,
+    "fit_score": 60.14,
+    "hp_sr": 161.72,
+    "shrunk_lift": "+13.62 SR Lift",
+    "hp_balls": 128,
+    "hp_boundary_pct": 21.1,
+    "hp_dot_pct": 34.4,
+    "strengths": [
+      "Pure domestic uncapped Indian asset with 161.72 high-pressure SR.",
+      "Substantial +13.62 shrunk lift proving true clutch ability.",
+      "Frees up overseas slots for premier bowling recruits."
+    ],
+    "limitations": [
+      "Susceptible to 145+ km/h rising bouncers aimed at ribs.",
+      "Must bat in lower order (#6 or #7)."
+    ],
+    "rr_tactical_fit": "Solves RR's domestic finishing vacancy alongside Dhruv Jurel at #6/#7.",
+    "budget_ceiling": "\u20b92.20 Cr"
+  },
+  "Matheesha Pathirana": {
+    "role": "Express Death Bowler / Slinger (Right-arm Fast)",
+    "nationality": "Overseas (Sri Lanka)",
+    "player_type": "Bowler",
+    "rank": 1,
+    "fit_score": 62.62,
+    "hp_econ": 8.58,
+    "shrunk_wkt_pct": "7.44% Wkt Rate",
+    "hp_balls": 212,
+    "hp_boundary_pct": 12.2,
+    "hp_dot_pct": 42.9,
+    "strengths": [
+      "Unplayable low-trajectory yorkers released at 145+ km/h.",
+      "Elite 8.58 economy rate in high-pressure death overs.",
+      "Tremendous 7.44% wicket strike rate breaking late-order partnerships."
+    ],
+    "limitations": [
+      "Occasional wide ball penalties due to extreme angle.",
+      "Requires active physical workload management."
+    ],
+    "rr_tactical_fit": "Direct answer to RR's death-overs leakage (+0.24 rpo), forming a fearsome duo with Archer.",
+    "budget_ceiling": "\u20b96.00 Cr"
+  },
+  "Naveen ul Haq": {
+    "role": "Deceptive Slower-Ball & Cutter Specialist (Right-arm Fast-Medium)",
+    "nationality": "Overseas (Afghanistan)",
+    "player_type": "Bowler",
+    "rank": 2,
+    "fit_score": 52.13,
+    "hp_econ": 10.3,
+    "shrunk_wkt_pct": "7.75% Wkt Rate",
+    "hp_balls": 99,
+    "hp_boundary_pct": 16.2,
+    "hp_dot_pct": 38.4,
+    "strengths": [
+      "World-leading 7.75% wicket strike rate under intense high pressure.",
+      "Exceptional back-of-the-hand slower balls and off-cutters.",
+      "Fierce competitive temperament in clutch playoff matches."
+    ],
+    "limitations": [
+      "Economy can inflate on dew-affected surfaces.",
+      "Overseas slot requirement."
+    ],
+    "rr_tactical_fit": "Tactical change-up enforcer who complements raw express pace.",
+    "budget_ceiling": "\u20b93.50 Cr"
+  },
+  "Mujeeb Ur Rahman": {
+    "role": "Powerplay & Middle Mystery Spinner (Right-arm Mystery)",
+    "nationality": "Overseas (Afghanistan)",
+    "player_type": "Bowler",
+    "rank": 3,
+    "fit_score": 52.1,
+    "hp_econ": 8.62,
+    "shrunk_wkt_pct": "5.56% Wkt Rate",
+    "hp_balls": 96,
+    "hp_boundary_pct": 13.6,
+    "hp_dot_pct": 44.0,
+    "strengths": [
+      "Capable of bowling in field-restricted Powerplay and Middle overs.",
+      "Exceptionally tight 8.62 HP economy with 44.0% dot ball percentage.",
+      "Carrom ball and googly deceive top-order left-handers."
+    ],
+    "limitations": [
+      "Minimal batting capability.",
+      "Less effective if ball is wet."
+    ],
+    "rr_tactical_fit": "Resolves RR's middle-overs containment deficit (+0.41 rpo) alongside Bishnoi.",
+    "budget_ceiling": "\u20b94.00 Cr"
+  },
+  "Keshav Maharaj": {
+    "role": "Restrictive Left-Arm Orthodox Spinner (Slow Left-Arm)",
+    "nationality": "Overseas (South Africa)",
+    "player_type": "Bowler",
+    "rank": 4,
+    "fit_score": 52.0,
+    "hp_econ": 9.23,
+    "shrunk_wkt_pct": "6.25% Wkt Rate",
+    "hp_balls": 130,
+    "hp_boundary_pct": 14.6,
+    "hp_dot_pct": 41.5,
+    "strengths": [
+      "Master of drifting and dipping the ball onto defensive lengths.",
+      "6.25% wicket strike rate while controlling run rates.",
+      "Proven leadership and calm tactical presence under siege."
+    ],
+    "limitations": [
+      "Not an express turner on flat tracks.",
+      "Consumes overseas slot."
+    ],
+    "rr_tactical_fit": "Clamps down opposition run scoring during overs 7\u201315 in Jaipur.",
+    "budget_ceiling": "\u20b93.50 Cr"
+  },
+  "Taskin Ahmed": {
+    "role": "High-Velocity Hit-The-Deck Pacer (Right-arm Fast)",
+    "nationality": "Overseas (Bangladesh)",
+    "player_type": "Bowler",
+    "rank": 5,
+    "fit_score": 51.47,
+    "hp_econ": 8.35,
+    "shrunk_wkt_pct": "5.00% Wkt Rate",
+    "hp_balls": 130,
+    "hp_boundary_pct": 12.3,
+    "hp_dot_pct": 43.8,
+    "strengths": [
+      "Stellar 8.35 economy under intense pressure across 130 balls.",
+      "Hostile hard-length bouncer hurrying batsmen on bouncy tracks.",
+      "Capable of opening the bowling or delivering in middle overs."
+    ],
+    "limitations": [
+      "Occasional injury spells requiring squad rotation.",
+      "Overseas allocation."
+    ],
+    "rr_tactical_fit": "Hostile hit-the-deck pace bowler to relieve workload from Jofra Archer.",
+    "budget_ceiling": "\u20b93.50 Cr"
+  },
+  "Trent Boult": {
+    "role": "Elite New-Ball Swing Specialist (Left-arm Fast-Medium)",
+    "nationality": "Overseas (New Zealand)",
+    "player_type": "Bowler",
+    "rank": 6,
+    "fit_score": 50.85,
+    "hp_econ": 9.07,
+    "shrunk_wkt_pct": "5.99% Wkt Rate",
+    "hp_balls": 254,
+    "hp_boundary_pct": 15.0,
+    "hp_dot_pct": 41.7,
+    "strengths": [
+      "Massive sample size: 254 high-pressure balls bowled.",
+      "World's most feared new-ball swing bowler inside the Powerplay.",
+      "Deep historical affinity with RR and proven Jaipur track record."
+    ],
+    "limitations": [
+      "Economy can rise if required to bowl 2 overs in death phase.",
+      "Age profile (35+)."
+    ],
+    "rr_tactical_fit": "Turnkey powerplay wicket-taker if available at disciplined auction valuation.",
+    "budget_ceiling": "\u20b94.50 Cr"
+  },
+  "Tushar Deshpande": {
+    "role": "Aggressive Indian Death Seam Enforcer (Right-arm Medium-Fast)",
+    "nationality": "Indian",
+    "player_type": "Bowler",
+    "rank": 7,
+    "fit_score": 50.49,
+    "hp_econ": 10.46,
+    "shrunk_wkt_pct": "4.92% Wkt Rate",
+    "hp_balls": 214,
+    "hp_boundary_pct": 17.8,
+    "hp_dot_pct": 39.3,
+    "strengths": [
+      "Domestic capped Indian seam asset freeing overseas spots.",
+      "214 high-pressure balls bowled in high-stakes IPL environments.",
+      "Strong yorker and hard-length capability under pressure."
+    ],
+    "limitations": [
+      "Higher economy rate (10.46) on true batting surfaces.",
+      "Can concede extra boundaries when missing length."
+    ],
+    "rr_tactical_fit": "Indian death-overs fast bowling reinforcement to partner Sandeep Sharma.",
+    "budget_ceiling": "\u20b93.50 Cr"
+  },
+  "Shoriful Islam": {
+    "role": "Hostile Left-Arm Seam & Bounce Specialist (Left-arm Fast-Medium)",
+    "nationality": "Overseas (Bangladesh)",
+    "player_type": "Bowler",
+    "rank": 8,
+    "fit_score": 49.11,
+    "hp_econ": 8.07,
+    "shrunk_wkt_pct": "6.67% Wkt Rate",
+    "hp_balls": 90,
+    "hp_boundary_pct": 12.2,
+    "hp_dot_pct": 46.7,
+    "strengths": [
+      "Sensational 8.07 economy rate under high pressure.",
+      "High wicket rate (6.67%) creating early and middle breakthroughs.",
+      "Natural left-arm angle cramping right-handed batters."
+    ],
+    "limitations": [
+      "Smaller sample size (90 HP balls).",
+      "Overseas slot consumption."
+    ],
+    "rr_tactical_fit": "High-value left-arm pacer who provides hostile angle at low auction cost.",
+    "budget_ceiling": "\u20b92.50 Cr"
+  },
+  "Blessing Muzarabani": {
+    "role": "Tall High-Release Containment Specialist (Right-arm Fast)",
+    "nationality": "Overseas (Zimbabwe)",
+    "player_type": "Bowler",
+    "rank": 9,
+    "fit_score": 48.31,
+    "hp_econ": 8.36,
+    "shrunk_wkt_pct": "2.53% Wkt Rate",
+    "hp_balls": 168,
+    "hp_boundary_pct": 13.1,
+    "hp_dot_pct": 44.6,
+    "strengths": [
+      "Immense 6'8\" height generating steep bounce from good lengths.",
+      "Tidy 8.36 economy rate across 168 high-pressure balls.",
+      "Disciplined off-stump line that stifles boundary hitting."
+    ],
+    "limitations": [
+      "Lower raw wicket-taking strike rate (2.53%).",
+      "Less deceptive slower ball variations."
+    ],
+    "rr_tactical_fit": "Superb containment bowler who chokes middle-overs scoring.",
+    "budget_ceiling": "\u20b92.00 Cr"
+  },
+  "Anrich Nortje": {
+    "role": "Hostile 150+ km/h Express Strike Pacer (Right-arm Fast)",
+    "nationality": "Overseas (South Africa)",
+    "player_type": "Bowler",
+    "rank": 10,
+    "fit_score": 47.5,
+    "hp_econ": 10.29,
+    "shrunk_wkt_pct": "4.96% Wkt Rate",
+    "hp_balls": 232,
+    "hp_boundary_pct": 17.2,
+    "hp_dot_pct": 40.5,
+    "strengths": [
+      "Genuine 150+ km/h thunderbolts shattering stumps.",
+      "232 high-pressure balls bowled across IPL playoff campaigns.",
+      "Proven ability to blast through top-order defenses."
+    ],
+    "limitations": [
+      "Higher economy (10.29) if radar is slightly off.",
+      "Recent injury recuperation."
+    ],
+    "rr_tactical_fit": "Elite strike bowler fallback if Pathirana auction bidding exceeds budget.",
+    "budget_ceiling": "\u20b95.00 Cr"
+  }
+}
