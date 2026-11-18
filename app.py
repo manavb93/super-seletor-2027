@@ -8,6 +8,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import json
+import re
+import textwrap
 from pathlib import Path
 import plotly.express as px
 import plotly.graph_objects as go
@@ -21,6 +23,17 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded"
 )
+
+# -------------------------------------------------------------------------
+# Safe HTML Renderer (Prevents CommonMark from escaping into Code Blocks)
+# -------------------------------------------------------------------------
+def render_html(html_str):
+    """Renders raw HTML safely in Streamlit without triggering Markdown indented code blocks."""
+    dedented = textwrap.dedent(html_str)
+    no_blank_lines = re.sub(r'\n\s*\n+', '\n', dedented).strip()
+    lines = [l.strip() for l in no_blank_lines.splitlines()]
+    clean_html = "".join(lines)
+    st.markdown(clean_html, unsafe_allow_html=True)
 
 # -------------------------------------------------------------------------
 # Premium Rajasthan Royals Custom CSS
@@ -42,17 +55,15 @@ st.markdown("""
     .hero-banner {
         background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 45%, #831843 100%);
         border-radius: 16px;
-        padding: 30px 36px;
+        padding: 26px 32px;
         color: #FFFFFF;
         margin-bottom: 24px;
         box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.25);
         border: 1px solid rgba(255, 255, 255, 0.1);
-        position: relative;
-        overflow: hidden;
     }
     .hero-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 2.2rem;
+        font-size: 2.1rem;
         font-weight: 800;
         letter-spacing: -0.02em;
         margin: 0 0 6px 0;
@@ -61,19 +72,18 @@ st.markdown("""
         -webkit-text-fill-color: transparent;
     }
     .hero-subtitle {
-        font-size: 1.0rem;
+        font-size: 0.96rem;
         color: #CBD5E1;
-        margin: 0 0 16px 0;
+        margin: 0 0 14px 0;
         font-weight: 500;
     }
     .hero-tags {
         display: flex;
-        gap: 10px;
+        gap: 8px;
         flex-wrap: wrap;
     }
     .hero-tag {
         background: rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(8px);
         padding: 4px 12px;
         border-radius: 9999px;
         font-size: 0.78rem;
@@ -94,13 +104,8 @@ st.markdown("""
         padding: 20px 22px;
         border: 1px solid #E2E8F0;
         box-shadow: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
-        transition: transform 0.18s ease, box-shadow 0.18s ease;
         position: relative;
         overflow: hidden;
-    }
-    .kpi-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px -3px rgba(15, 23, 42, 0.1);
     }
     .kpi-card::before {
         content: "";
@@ -116,24 +121,24 @@ st.markdown("""
     .kpi-card.green::before { background: #059669; }
     
     .kpi-label {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.05em;
         color: #64748B;
-        margin-bottom: 6px;
+        margin-bottom: 4px;
     }
     .kpi-value {
         font-family: 'Outfit', sans-serif;
-        font-size: 1.85rem;
+        font-size: 1.8rem;
         font-weight: 800;
         color: #0F172A;
         line-height: 1.2;
     }
     .kpi-caption {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         color: #64748B;
-        margin-top: 6px;
+        margin-top: 4px;
         font-weight: 500;
     }
 
@@ -144,16 +149,9 @@ st.markdown("""
         padding: 20px;
         border: 1px solid #E2E8F0;
         box-shadow: 0 4px 14px -3px rgba(15, 23, 42, 0.06);
-        margin-bottom: 16px;
-        transition: all 0.2s ease;
-    }
-    .player-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 24px -4px rgba(233, 30, 99, 0.15);
-        border-color: #FBCFE8;
+        margin-bottom: 18px;
     }
     .card-rank-badge {
-        background: linear-gradient(135deg, #E91E63 0%, #BE185D 100%);
         color: #FFFFFF;
         padding: 3px 10px;
         border-radius: 6px;
@@ -189,7 +187,7 @@ st.markdown("""
     .metric-pill-box {
         background: #F8FAFC;
         border-radius: 10px;
-        padding: 10px 14px;
+        padding: 10px 12px;
         border: 1px solid #F1F5F9;
         text-align: center;
     }
@@ -209,18 +207,18 @@ st.markdown("""
     /* Section Headers */
     .section-header {
         border-bottom: 2px solid #E2E8F0;
-        padding-bottom: 10px;
-        margin-bottom: 20px;
+        padding-bottom: 8px;
+        margin-bottom: 18px;
     }
     .section-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 1.4rem;
+        font-size: 1.35rem;
         font-weight: 800;
         color: #0F172A;
         margin: 0;
     }
     .section-subtitle {
-        font-size: 0.88rem;
+        font-size: 0.85rem;
         color: #64748B;
         margin: 2px 0 0 0;
     }
@@ -238,11 +236,6 @@ st.markdown("""
         font-weight: 600 !important;
         padding: 4px 8px;
         border-radius: 6px;
-        transition: background 0.15s ease;
-    }
-    [data-testid="stSidebar"] .stRadio label:hover {
-        background: rgba(255, 255, 255, 0.08);
-        color: #FFFFFF !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -290,8 +283,8 @@ if targets_df is None:
 # Sidebar Branding & Navigation
 # -------------------------------------------------------------------------
 with st.sidebar:
-    st.markdown("""
-    <div style='text-align: center; padding: 10px 0 20px 0;'>
+    render_html("""
+    <div style='text-align: center; padding: 10px 0 16px 0;'>
         <div style='background: linear-gradient(135deg, #E91E63 0%, #881337 100%); display: inline-block; padding: 14px 22px; border-radius: 14px; box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4); margin-bottom: 12px;'>
             <span style='font-size: 2.2rem;'>👑</span>
         </div>
@@ -299,9 +292,9 @@ with st.sidebar:
         <p style='color: #F472B6; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; margin: 2px 0 0 0; text-transform: uppercase;'>SupeRR Selector 2027</p>
         <p style='color: #94A3B8; font-size: 0.72rem; margin: 4px 0 0 0;'>Official Auction Intelligence Platform</p>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
-    st.markdown("""
+    render_html("""
     <div style='background: rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 14px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.08);'>
         <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;'>
             <span style='font-size: 0.75rem; color: #94A3B8; font-weight: 600;'>REMAINING PURSE</span>
@@ -315,7 +308,7 @@ with st.sidebar:
             <span>Slots: 6 Vacant</span>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     menu = st.radio(
         "NAVIGATION",
@@ -333,7 +326,7 @@ with st.sidebar:
     )
 
     st.markdown("---")
-    st.markdown("""
+    render_html("""
     <div style='font-size: 0.72rem; color: #64748B; line-height: 1.4;'>
         <strong>AUDIT GOVERNANCE</strong><br>
         • Verified Purse: <strong>₹27.05 Cr</strong><br>
@@ -342,11 +335,10 @@ with st.sidebar:
         • Mitchell Starc: <strong>Excluded (Opt-Out)</strong><br>
         • Integrity Check: <strong>14/14 Passed</strong>
     </div>
-    """, unsafe_allow_html=True)
-
+    """)
 
 # -------------------------------------------------------------------------
-# Helper Functions for Charts
+# Helper Functions for Visual Radar & Player Cards
 # -------------------------------------------------------------------------
 def create_radar_chart(player_name, role="batter"):
     """Creates a normalized 5-axis radar chart for player profiling."""
@@ -357,7 +349,6 @@ def create_radar_chart(player_name, role="batter"):
     metrics = p_data.get("metrics", {})
     categories = ["Fit Score", "High-Pressure Execution", "Bayes Lift / Wkt%", "Reliability / Sample", "Phase Fit"]
     
-    # Scale values 0-100
     fit_val = p_data.get("fit_score", 60)
     if role == "batter":
         hp_sr = metrics.get("hp_strike_rate", 130)
@@ -422,12 +413,65 @@ def create_comparison_radar(p1_name, p2_name):
     )
     return fig
 
+def render_player_card(row, is_batter=True):
+    """Renders a beautifully formatted player card with zero markdown code-block artifacts."""
+    overseas_chip = "<span class='chip chip-blue'>Overseas</span>" if row['nationality'] != 'India' else "<span class='chip chip-green'>Indian Capped</span>"
+    if 'Uncapped' in str(row.get('capped_status', '')):
+        overseas_chip = "<span class='chip chip-yellow'>Uncapped Domestic</span>"
+        
+    rank = row['auction_rank']
+    name = row['player_name']
+    role = row['primary_role']
+    fit = f"{row['rr_fit_score']:.1f}"
+    weakness = row['addressed_rr_weakness']
+    slot = str(row['strategic_budget_guidance']).split()[0]
+    
+    if is_batter:
+        badge_bg = "linear-gradient(135deg, #E91E63 0%, #BE185D 100%)"
+        fit_color = "#E91E63"
+        m1_lbl = "HP Strike Rate"
+        m1_val = f"{row['hp_strike_rate']:.1f}"
+        m1_col = "#E91E63"
+        lift = row['shrunk_sr_lift']
+        m2_lbl = "Bayes Shrunk Lift"
+        m2_val = f"{'+' if lift > 0 else ''}{lift:.1f}"
+        m2_col = "#059669" if lift > 0 else "#DC2626"
+        m3_lbl = "HP Balls Faced"
+        m3_val = f"{int(row['hp_balls_faced'])}"
+        m4_lbl = "Target Slot Ceiling"
+        m4_val = slot
+        m4_col = "#2563EB"
+        rationale_bg = "#FFF5F7"
+        rationale_border = "#E91E63"
+        rationale_col = "#831843"
+    else:
+        badge_bg = "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)"
+        fit_color = "#2563EB"
+        m1_lbl = "HP Economy"
+        m1_val = f"{row['hp_economy']:.2f}"
+        m1_col = "#2563EB"
+        wkt = row['shrunk_wicket_rate'] * 100
+        m2_lbl = "Shrunk Wicket %"
+        m2_val = f"{wkt:.1f}%"
+        m2_col = "#059669"
+        m3_lbl = "HP Balls Bowled"
+        m3_val = f"{int(row['hp_balls_bowled'])}"
+        m4_lbl = "Target Slot Ceiling"
+        m4_val = slot
+        m4_col = "#E91E63"
+        rationale_bg = "#EFF6FF"
+        rationale_border = "#2563EB"
+        rationale_col = "#1E3A8A"
+
+    card_html = f"""<div class='player-card'><div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;'><div><span class='card-rank-badge' style='background:{badge_bg};'>#{rank}</span><span class='card-name'>{name}</span><span style='margin-left:8px;'>{overseas_chip}</span><span class='chip {'chip-pink' if is_batter else 'chip-blue'}'>{role}</span></div><div style='text-align:right;'><span style='font-size:0.75rem;color:#64748B;font-weight:700;'>RR FIT SCORE</span><br><span style='font-family:Outfit;font-size:1.35rem;font-weight:800;color:{fit_color};'>{fit} / 100</span></div></div><div style='display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px;'><div class='metric-pill-box'><div class='metric-pill-label'>{m1_lbl}</div><div class='metric-pill-val' style='color:{m1_col};'>{m1_val}</div></div><div class='metric-pill-box'><div class='metric-pill-label'>{m2_lbl}</div><div class='metric-pill-val' style='color:{m2_col};'>{m2_val}</div></div><div class='metric-pill-box'><div class='metric-pill-label'>{m3_lbl}</div><div class='metric-pill-val'>{m3_val}</div></div><div class='metric-pill-box'><div class='metric-pill-label'>{m4_lbl}</div><div class='metric-pill-val' style='color:{m4_col};'>{m4_val}</div></div></div><div style='background:{rationale_bg};border-radius:8px;padding:10px 14px;border-left:3px solid {rationale_border};font-size:0.85rem;color:{rationale_col};'><strong>🎯 Tactical Rationale:</strong> {weakness}</div></div>"""
+    render_html(card_html)
+
 
 # =========================================================================
 # 1. EXECUTIVE COMMAND CENTER
 # =========================================================================
 if menu == "Executive Command Center":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>IPL 2027 Auction War Room</div>
         <div class='hero-subtitle'>Rajasthan Royals Tactical Roster Planning & High-Pressure Empirical Valuation</div>
@@ -440,56 +484,55 @@ if menu == "Executive Command Center":
             <span class='hero-tag'>GOVERNANCE: 14/14 PASSED</span>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.markdown("""
+        render_html("""
         <div class='kpi-card'>
             <div class='kpi-label'>Remaining Purse</div>
             <div class='kpi-value' style='color:#E91E63;'>₹27.05 Cr</div>
             <div class='kpi-caption'>₹102.95 Cr spent across 19 retentions</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
     with col2:
-        st.markdown("""
+        render_html("""
         <div class='kpi-card blue'>
             <div class='kpi-label'>Open Squad Slots</div>
             <div class='kpi-value' style='color:#2563EB;'>6 Slots</div>
             <div class='kpi-caption'>19 of 25 filled • Max 3 Overseas</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
     with col3:
-        st.markdown("""
+        render_html("""
         <div class='kpi-card purple'>
             <div class='kpi-label'>Target Universe</div>
             <div class='kpi-value' style='color:#7C3AED;'>955 Active</div>
             <div class='kpi-caption'>262 exclusions audited & verified</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
     with col4:
-        st.markdown("""
+        render_html("""
         <div class='kpi-card green'>
             <div class='kpi-label'>Audit Governance</div>
             <div class='kpi-value' style='color:#059669;'>14 / 14</div>
             <div class='kpi-caption'>100% financial & roster reconciliation</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
 
     # Top Targets Quick Look
     c_left, c_right = st.columns([1.1, 1])
     with c_left:
-        st.markdown("""
+        render_html("""
         <div class='section-header'>
             <div class='section-title'>🎯 Marquee Acquisition Priorities</div>
             <div class='section-subtitle'>Empirical Bayes top targets addressing RR phase deficits</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
         
-        # Display Top 3 Batters & Top 3 Bowlers in compact chips
-        st.markdown("""
+        render_html("""
         <div style='background:#FFFFFF; border-radius:12px; padding:16px; border:1px solid #E2E8F0; margin-bottom:12px;'>
             <div style='font-size:0.8rem; font-weight:800; color:#E91E63; text-transform:uppercase; margin-bottom:8px;'>🏏 TOP BATTING PRIORITIES (DEATH ACCELERATION)</div>
             <div style='display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #F1F5F9;'>
@@ -505,7 +548,6 @@ if menu == "Executive Command Center":
                 <div style='text-align:right;'><strong style='color:#E91E63;'>SR 147.92</strong> | Fit: 77.31</div>
             </div>
         </div>
-        
         <div style='background:#FFFFFF; border-radius:12px; padding:16px; border:1px solid #E2E8F0;'>
             <div style='font-size:0.8rem; font-weight:800; color:#2563EB; text-transform:uppercase; margin-bottom:8px;'>⚡ TOP BOWLING PRIORITIES (DEATH YORKERS & SPIN)</div>
             <div style='display:flex; justify-content:space-between; align-items:center; padding:8px 0; border-bottom:1px solid #F1F5F9;'>
@@ -521,17 +563,16 @@ if menu == "Executive Command Center":
                 <div style='text-align:right;'><strong style='color:#2563EB;'>Econ 7.42</strong> | Wkt: 4.88%</div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     with c_right:
-        st.markdown("""
+        render_html("""
         <div class='section-header'>
             <div class='section-title'>📊 Balanced Purse Allocation (Scenario C)</div>
             <div class='section-subtitle'>₹23.55 Cr for 6 slots + ₹3.50 Cr strategic contingency buffer</div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
         
-        # Donut Chart for Budget Allocation
         labels = ['Slot 1: Marquee Finisher', 'Slot 2: Express Death Bowler', 'Slot 3: Wicket Spin', 'Slot 4: Domestic RHB', 'Slot 5: Domestic Finisher', 'Slot 6: Reserve Depth', 'Strategic Contingency Buffer']
         values = [7.00, 6.00, 4.00, 3.50, 2.20, 0.85, 3.50]
         colors = ['#E91E63', '#EC4899', '#3B82F6', '#60A5FA', '#93C5FD', '#CBD5E1', '#10B981']
@@ -556,7 +597,7 @@ if menu == "Executive Command Center":
 # 2. TOP 10 BATTERS (AUCTION RANKING)
 # =========================================================================
 elif menu == "Top 10 Batters (Auction Ranking)":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Top 10 Auction Batters Ranking</div>
         <div class='hero-subtitle'>Filtered for confirmed auction eligibility • Evaluated across high-pressure game situations</div>
@@ -567,7 +608,7 @@ elif menu == "Top 10 Batters (Auction Ranking)":
             <span class='hero-tag'>INCLUDES DOMESTIC & OVERSEAS</span>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     view_mode = st.radio("Display Format", ["Visual Scouting Cards", "Data Table (with CSV Export)"], horizontal=True)
 
@@ -575,51 +616,7 @@ elif menu == "Top 10 Batters (Auction Ranking)":
         for idx, row in top10_batters_df.iterrows():
             col_a, col_b = st.columns([2.5, 1.2])
             with col_a:
-                overseas_chip = "<span class='chip chip-blue'>Overseas</span>" if row['nationality'] != 'India' else "<span class='chip chip-green'>Indian Capped</span>"
-                if 'Uncapped' in str(row['capped_status']):
-                    overseas_chip = "<span class='chip chip-yellow'>Uncapped Domestic</span>"
-                
-                st.markdown(f"""
-                <div class='player-card'>
-                    <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;'>
-                        <div>
-                            <span class='card-rank-badge'>#{row['auction_rank']}</span>
-                            <span class='card-name'>{row['player_name']}</span>
-                            <span style='margin-left: 8px;'>{overseas_chip}</span>
-                            <span class='chip chip-pink'>{row['primary_role']}</span>
-                        </div>
-                        <div style='text-align: right;'>
-                            <span style='font-size: 0.75rem; color: #64748B; font-weight: 700;'>RR FIT SCORE</span><br>
-                            <span style='font-family: Outfit; font-size: 1.35rem; font-weight: 800; color: #E91E63;'>{row['rr_fit_score']:.1f} / 100</span>
-                        </div>
-                    </div>
-                    
-                    <div style='display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px;'>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>HP Strike Rate</div>
-                            <div class='metric-pill-val' style='color:#E91E63;'>{row['hp_strike_rate']:.1f}</div>
-                        </div>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>Bayes Shrunk Lift</div>
-                            <div class='metric-pill-val' style='color:{'#059669' if row['shrunk_sr_lift'] > 0 else '#DC2626'};'>
-                                {'+' if row['shrunk_sr_lift'] > 0 else ''}{row['shrunk_sr_lift']:.1f}
-                            </div>
-                        </div>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>HP Balls Faced</div>
-                            <div class='metric-pill-val'>{int(row['hp_balls_faced'])}</div>
-                        </div>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>Target Slot Ceiling</div>
-                            <div class='metric-pill-val' style='color:#2563EB;'>{row['strategic_budget_guidance'].split()[0]}</div>
-                        </div>
-                    </div>
-                    
-                    <div style='background: #FFF5F7; border-radius: 8px; padding: 10px 14px; border-left: 3px solid #E91E63; font-size: 0.85rem; color: #831843;'>
-                        <strong>🎯 Tactical Rationale:</strong> {row['addressed_rr_weakness']}
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
+                render_player_card(row, is_batter=True)
             with col_b:
                 radar = create_radar_chart(row['player_name'], "batter")
                 if radar:
@@ -642,7 +639,7 @@ elif menu == "Top 10 Batters (Auction Ranking)":
 # 3. TOP 10 BOWLERS (AUCTION RANKING)
 # =========================================================================
 elif menu == "Top 10 Bowlers (Auction Ranking)":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Top 10 Auction Bowlers Ranking</div>
         <div class='hero-subtitle'>Precision death-overs control & middle-overs wicket probability under high pressure</div>
@@ -653,7 +650,7 @@ elif menu == "Top 10 Bowlers (Auction Ranking)":
             <span class='hero-tag'>EXCLUDES RETAINED SQUAD STARS</span>
         </div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     view_mode = st.radio("Display Format", ["Visual Scouting Cards", "Data Table (with CSV Export)"], horizontal=True)
 
@@ -661,49 +658,7 @@ elif menu == "Top 10 Bowlers (Auction Ranking)":
         for idx, row in top10_bowlers_df.iterrows():
             col_a, col_b = st.columns([2.5, 1.2])
             with col_a:
-                overseas_chip = "<span class='chip chip-blue'>Overseas</span>" if row['nationality'] != 'India' else "<span class='chip chip-green'>Indian Capped</span>"
-                
-                st.markdown(f"""
-                <div class='player-card'>
-                    <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;'>
-                        <div>
-                            <span class='card-rank-badge' style='background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);'>#{row['auction_rank']}</span>
-                            <span class='card-name'>{row['player_name']}</span>
-                            <span style='margin-left: 8px;'>{overseas_chip}</span>
-                            <span class='chip chip-blue'>{row['primary_role']}</span>
-                        </div>
-                        <div style='text-align: right;'>
-                            <span style='font-size: 0.75rem; color: #64748B; font-weight: 700;'>RR FIT SCORE</span><br>
-                            <span style='font-family: Outfit; font-size: 1.35rem; font-weight: 800; color: #2563EB;'>{row['rr_fit_score']:.1f} / 100</span>
-                        </div>
-                    </div>
-                    
-                    <div style='display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px;'>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>HP Economy</div>
-                            <div class='metric-pill-val' style='color:#2563EB;'>{row['hp_economy']:.2f}</div>
-                        </div>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>Shrunk Wicket %</div>
-                            <div class='metric-pill-val' style='color:#059669;'>
-                                {row['shrunk_wicket_rate']*100:.1f}%
-                            </div>
-                        </div>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>HP Balls Bowled</div>
-                            <div class='metric-pill-val'>{int(row['hp_balls_bowled'])}</div>
-                        </div>
-                        <div class='metric-pill-box'>
-                            <div class='metric-pill-label'>Target Slot Ceiling</div>
-                            <div class='metric-pill-val' style='color:#E91E63;'>{row['strategic_budget_guidance'].split()[0]}</div>
-                        </div>
-                    </div>
-                    
-                    <div style='background: #EFF6FF; border-radius: 8px; padding: 10px 14px; border-left: 3px solid #2563EB; font-size: 0.85rem; color: #1E3A8A;'>
-                        <strong>🎯 Tactical Rationale:</strong> {row['addressed_rr_weakness']}
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
+                render_player_card(row, is_batter=False)
             with col_b:
                 radar = create_radar_chart(row['player_name'], "bowler")
                 if radar:
@@ -726,12 +681,12 @@ elif menu == "Top 10 Bowlers (Auction Ranking)":
 # 4. PLAYER EXPLORER (ALL 20 TARGETS)
 # =========================================================================
 elif menu == "Player Explorer (All 20 Targets)":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Player Scouting Explorer</div>
         <div class='hero-subtitle'>Granular dossiers, empirical percentiles, and high-pressure splits for all 20 ranked targets</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     all_20_players = list(top10_batters_df['player_name']) + list(top10_bowlers_df['player_name'])
     
@@ -740,43 +695,42 @@ elif menu == "Player Explorer (All 20 Targets)":
         selected_player = st.selectbox("Select Target Player to Inspect (All 20 Available)", all_20_players, index=0)
     with col_sel2:
         is_batter = selected_player in list(top10_batters_df['player_name'])
-        st.markdown(f"""
+        is_os = ('Mitchell' in selected_player or 'Hendricks' in selected_player or 'Pathirana' in selected_player or 'Boult' in selected_player or 'Nortje' in selected_player or 'Hridoy' in selected_player or 'Chapman' in selected_player or 'Hetmyer' in selected_player or 'Mujeeb' in selected_player or 'Maharaj' in selected_player or 'Taskin' in selected_player or 'Naveen' in selected_player or 'Shoriful' in selected_player or 'Muzarabani' in selected_player or 'van der Dussen' in selected_player or 'Asif' in selected_player)
+        render_html(f"""
         <div style='margin-top: 26px;'>
             <span class='chip chip-pink'>{'BATTER TARGET' if is_batter else 'BOWLER TARGET'}</span>
-            <span class='chip chip-blue'>{'OVERSEAS' if ('Mitchell' in selected_player or 'Hendricks' in selected_player or 'Pathirana' in selected_player or 'Boult' in selected_player or 'Nortje' in selected_player or 'Hridoy' in selected_player or 'Chapman' in selected_player or 'Hetmyer' in selected_player or 'Mujeeb' in selected_player or 'Maharaj' in selected_player or 'Taskin' in selected_player or 'Naveen' in selected_player or 'Shoriful' in selected_player or 'Muzarabani' in selected_player or 'van der Dussen' in selected_player or 'Asif' in selected_player) else 'DOMESTIC INDIAN'}</span>
+            <span class='chip chip-blue'>{'OVERSEAS' if is_os else 'DOMESTIC INDIAN'}</span>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
-    # Fetch dossier
     dossier = scouting_profiles.get(selected_player, {})
     p_metrics = dossier.get("metrics", {})
 
     col_l, col_r = st.columns([1.5, 1])
     with col_l:
-        st.markdown(f"""
+        strengths_list = "".join([f"<li>{s}</li>" for s in dossier.get('strengths', ['Elite high-pressure performance execution'])])
+        render_html(f"""
         <div style='background:#FFFFFF; border-radius:14px; padding:24px; border:1px solid #E2E8F0; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 20px;'>
             <h2 style='font-family: Outfit; margin:0 0 4px 0; color:#0F172A;'>{selected_player}</h2>
             <p style='color:#64748B; font-weight:600; margin:0 0 16px 0;'>Role: {dossier.get('primary_role', 'N/A')} • Proposed Slot: {dossier.get('target_slot', 'N/A')}</p>
-            
             <div style='background:#FFF5F7; border-radius:10px; padding:14px; border-left:4px solid #E91E63; margin-bottom:16px;'>
                 <strong style='color:#BE185D;'>Franchise Scout Recommendation:</strong><br>
                 <span style='color:#334155; font-size:0.92rem;'>{dossier.get('strategic_rationale', 'High-priority target strictly within budget.')}</span>
             </div>
-            
             <h4 style='font-family: Outfit; margin: 16px 0 8px 0;'>Tactical Strengths & Role Fit</h4>
             <ul style='color:#334155; font-size:0.9rem; line-height:1.6;'>
-                {''.join([f"<li>{s}</li>" for s in dossier.get('strengths', ['Elite high-pressure performance execution'])])}
+                {strengths_list}
             </ul>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     with col_r:
-        st.markdown("<div class='section-title'>Metric Spider Radar</div>", unsafe_allow_html=True)
+        render_html("<div class='section-title'>Metric Spider Radar</div>")
         radar_fig = create_radar_chart(selected_player, "batter" if is_batter else "bowler")
         if radar_fig:
             st.plotly_chart(radar_fig, use_container_width=True)
             
-        st.markdown(f"""
+        render_html(f"""
         <div style='background:#F8FAFC; border-radius:10px; padding:16px; border:1px solid #E2E8F0;'>
             <div style='display:flex; justify-content:space-between; margin-bottom:8px;'>
                 <span style='color:#64748B; font-size:0.85rem;'>Fit Score:</span>
@@ -791,19 +745,19 @@ elif menu == "Player Explorer (All 20 Targets)":
                 <strong style='color:#2563EB;'>{dossier.get('target_slot', '₹3.5 Cr')}</strong>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
 
 # =========================================================================
 # 5. HEAD-TO-HEAD COMPARISON
 # =========================================================================
 elif menu == "Head-to-Head Comparison":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Player Comparison Suite</div>
         <div class='hero-subtitle'>Direct statistical comparison, dual radar overlay, and head-to-head metrics for any 2 of the 20 targets</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     all_20_players = list(top10_batters_df['player_name']) + list(top10_bowlers_df['player_name'])
 
@@ -818,7 +772,7 @@ elif menu == "Head-to-Head Comparison":
 
     col_c1, col_c2, col_radar = st.columns([1, 1, 1.2])
     with col_c1:
-        st.markdown(f"""
+        render_html(f"""
         <div class='player-card' style='border-top: 4px solid #E91E63;'>
             <h3 style='font-family: Outfit; margin:0 0 6px 0; color:#E91E63;'>{p1}</h3>
             <p style='color:#64748B; font-size:0.85rem; margin-bottom:12px;'>{d1.get('primary_role', 'N/A')}</p>
@@ -831,10 +785,10 @@ elif menu == "Head-to-Head Comparison":
                 <div class='metric-pill-val'>{d1.get('target_slot', 'N/A')}</div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     with col_c2:
-        st.markdown(f"""
+        render_html(f"""
         <div class='player-card' style='border-top: 4px solid #2563EB;'>
             <h3 style='font-family: Outfit; margin:0 0 6px 0; color:#2563EB;'>{p2}</h3>
             <p style='color:#64748B; font-size:0.85rem; margin-bottom:12px;'>{d2.get('primary_role', 'N/A')}</p>
@@ -847,10 +801,10 @@ elif menu == "Head-to-Head Comparison":
                 <div class='metric-pill-val'>{d2.get('target_slot', 'N/A')}</div>
             </div>
         </div>
-        """, unsafe_allow_html=True)
+        """)
 
     with col_radar:
-        st.markdown("<div class='section-title'>Dual Radar Overlay</div>", unsafe_allow_html=True)
+        render_html("<div class='section-title'>Dual Radar Overlay</div>")
         dual_fig = create_comparison_radar(p1, p2)
         st.plotly_chart(dual_fig, use_container_width=True)
 
@@ -859,12 +813,12 @@ elif menu == "Head-to-Head Comparison":
 # 6. INTERACTIVE DATA VISUALS
 # =========================================================================
 elif menu == "Interactive Data Visuals":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Data Analysis & Visual Analytics Gallery</div>
         <div class='hero-subtitle'>Interactive high-pressure frontier plots, phase deficit breakdowns, and sensitivity models</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     tab1, tab2, tab3, tab4, tab5 = st.tabs([
         "Batting Frontier (Plotly)", 
@@ -927,12 +881,12 @@ elif menu == "Interactive Data Visuals":
 # 7. RETAINED SQUAD & PHASE GAPS
 # =========================================================================
 elif menu == "Retained Squad & Phase Gaps":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Retained Roster & Phase Analysis</div>
         <div class='hero-subtitle'>Analysis of 19 retained players (₹102.95 Cr spend) and empirical run-rate differentials</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     st.subheader("Official Retained Roster (19 Players • ₹102.95 Cr Committed)")
     st.dataframe(squad_df, use_container_width=True)
@@ -946,12 +900,12 @@ elif menu == "Retained Squad & Phase Gaps":
 # 8. AUCTION BUDGET SIMULATOR (₹27.05 CR PURSE)
 # =========================================================================
 elif menu == "Auction Budget Simulator (₹27.05 Cr)":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Interactive Auction Budget Simulator</div>
         <div class='hero-subtitle'>Test custom bidding scenarios across RR's 6 vacant squad slots against the ₹27.05 Cr purse</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     preset = st.radio("Load Strategic Scenario Preset", ["Scenario C: Balanced Tactical (RECOMMENDED)", "Scenario A: Pace Heavy", "Scenario B: Batting Heavy"], horizontal=True)
 
@@ -994,12 +948,12 @@ elif menu == "Auction Budget Simulator (₹27.05 Cr)":
 # 9. EXCLUSION & GOVERNANCE REGISTER
 # =========================================================================
 elif menu == "Exclusion & Governance Register":
-    st.markdown("""
+    render_html("""
     <div class='hero-banner'>
         <div class='hero-title'>Player Exclusion & Governance Audit</div>
         <div class='hero-subtitle'>Full transparent register of 262 excluded players from the 1,217 master pool</div>
     </div>
-    """, unsafe_allow_html=True)
+    """)
 
     cat_choice = st.selectbox("Filter Exclusion Reason", ["All Categories"] + list(exclusions_df['exclusion_category'].unique()))
     search = st.text_input("Search Excluded Player Name", "")
